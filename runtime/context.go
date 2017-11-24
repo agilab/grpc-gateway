@@ -28,6 +28,8 @@ const MetadataTrailerPrefix = "Grpc-Trailer-"
 
 const metadataGrpcTimeout = "Grpc-Timeout"
 
+const UseRequestContext = "Grpc-UseRequestCtx"
+
 const xForwardedFor = "X-Forwarded-For"
 const xForwardedHost = "X-Forwarded-Host"
 
@@ -45,6 +47,9 @@ except that the forwarded destination is not another HTTP service but rather
 a gRPC service.
 */
 func AnnotateContext(ctx context.Context, mux *ServeMux, req *http.Request) (context.Context, error) {
+	if ctx.Value(UseRequestContext) == "1"{
+		ctx = req.Context()
+	}
 	var pairs []string
 	timeout := DefaultContextTimeout
 	if tm := req.Header.Get(metadataGrpcTimeout); tm != "" {

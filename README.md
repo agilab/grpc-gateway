@@ -1,5 +1,8 @@
 # grpc-gateway
 
+*  ctx 里面 UseRequestContext  设置为 "1"，表示使用http request的context
+
+
 [![Build Status](https://travis-ci.org/grpc-ecosystem/grpc-gateway.svg?branch=master)](https://travis-ci.org/grpc-ecosystem/grpc-gateway)
 
 grpc-gateway is a plugin of [protoc](http://github.com/google/protobuf).
